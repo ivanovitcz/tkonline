@@ -87,7 +87,7 @@
 														echo "<span class='label label-danger'>Tidak Disetujui</span>";
 													}elseif($i['request_status'] == 'Disetujui'){
 														echo "<span class='label label-success'>Disetujui</span>";
-														echo "&nbsp; <a class='label label-info' href='request_invoice.php'>Isi Invoice</a>";
+														echo "&nbsp; <a class='label label-info' href='request_checkout.php'>Isi Invoice</a>";
 													}
 													?>
 												</td>	
