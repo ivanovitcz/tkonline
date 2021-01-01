@@ -171,14 +171,14 @@
 												<tr>
 													<th class="empty" colspan="2"></th>
 													<th>TOTAL BAYAR</th>
-													<th class="text-center"><span id="tampil_total"><?php echo "Rp. ".number_format($jumlah_total) . " ,-"; ?></span></th>
+													<th class="text-center"><span id="tampil_total"><?php echo "Rp. ".number_format($total) . " ,-"; ?></span></th>
 												</tr>
 											</tfoot>
 										</table>
 
-										<input name="berat" id="berat2" value="<?php echo $total_berat ?>" type="hidden">
+										<input name="berat" id="berat2" value="<?php echo $i['request_berat']; ?>" type="hidden">
 
-										<input type="hidden" name="total_bayar" id="total_bayar" value="<?php echo $jumlah_total; ?>">
+										<input type="hidden" name="total_bayar" id="total_bayar" value="<?php echo $total; ?>">
 
 							</div>
 						</form>
