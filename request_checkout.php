@@ -112,10 +112,6 @@
 
 								<div class="row">
 									<div class="col-lg-12">
-										<div class="pull-left">
-											<a class="main-btn" href="keranjang.php">Kembali Ke Keranjang</a>
-										</div>
-
 										<div class="pull-right">
 											<input type="submit" class="primary-btn" value="Buat Pesanan">
 										</div>
@@ -125,14 +121,7 @@
 							</div>
 							<div class="col-lg-6">
 
-								<?php 
-								if(isset($_SESSION['keranjang'])){
-
-									$jumlah_isi_keranjang = count($_SESSION['keranjang']);
-
-									if($jumlah_isi_keranjang != 0){
-
-										?>
+				
 
 
 										<table class="shopping-cart-table table">
@@ -147,46 +136,32 @@
 											<tbody>
 
 												<?php
-											// cek apakah produk sudah ada dalam keranjang
-												$jumlah_total = 0;
-												$total = 0;
-												for($a = 0; $a < $jumlah_isi_keranjang; $a++){
-													$id_produk = $_SESSION['keranjang'][$a]['produk'];
-													$jml = $_SESSION['keranjang'][$a]['jumlah'];
-
-													$isi = mysqli_query($koneksi,"select * from produk where produk_id='$id_produk'");
-													$i = mysqli_fetch_assoc($isi);
-
-													$total += $i['produk_harga']*$jml;
-													$jumlah_total += $total;
+												$id = $_GET['id'];
+												$request = mysqli_query($koneksi, "select * from request where request_id='$id'");
+												$i = mysqli_fetch_assoc($request);
+												$total = $i['request_harga'] * $i['request_jumlah'];
 													?>
 
 													<tr>
 														<td>
-															<a href="produk_detail.php?id=<?php echo $i['produk_id'] ?>"><?php echo $i['produk_nama'] ?></a>
+															Produk Custome
 														</td>
 														<td class="text-center">
-															<?php echo "Rp. ".number_format($i['produk_harga']) . " ,-"; ?>
+															<?php echo "Rp. ".number_format($i['request_harga']) . " ,-"; ?>
 														</td>
 														<td class="qty text-center">
-															<?php echo $_SESSION['keranjang'][$a]['jumlah']; ?>
+															<?php echo $i['request_jumlah']; ?>
 														</td>
-														<td class="text-center"><strong class="primary-color total_harga" id="total_<?php echo $i['produk_id'] ?>"><?php echo "Rp. ".number_format($total) . " ,-"; ?></strong></td>
+														<td class="text-center"><strong class="primary-color total_harga"><?php echo "Rp. ".number_format($total) . " ,-"; ?></strong></td>
 													</tr>
 
-													<?php
-													$total = 0;
-
-												}
-
-												?>
 
 											</tbody>
 											<tfoot>
 												<tr>
 													<th class="empty" colspan="2"></th>
 													<th>TOTAL BERAT</th>
-													<th class="text-center"><?php echo $total_berat; ?> Gram</th>
+													<th class="text-center"><?php echo $i['request_berat']; ?> Gram</th>
 												</tr>
 												<tr>
 													<th class="empty" colspan="2"></th>
@@ -204,18 +179,6 @@
 										<input name="berat" id="berat2" value="<?php echo $total_berat ?>" type="hidden">
 
 										<input type="hidden" name="total_bayar" id="total_bayar" value="<?php echo $jumlah_total; ?>">
-
-										<?php
-									}else{
-
-										echo "<br><br><br><h3><center>Keranjang Masih Kosong. Yuk <a href='index.php'>belanja</a> !</center></h3><br><br><br>";
-									}
-
-
-								}else{
-									echo "<br><br><br><h3><center>Keranjang Masih Kosong. Yuk <a href='index.php'>belanja</a> !</center></h3><br><br><br>";
-								}
-								?>
 
 							</div>
 						</form>

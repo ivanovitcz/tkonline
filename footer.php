@@ -181,7 +181,7 @@
 
 		$(document).on("change","#kabupaten",function(){
 
-			var asal = 152;
+			var asal = '169';
 			var kab = $('#kabupaten').val();
 			var kurir = "a";
 			var berat = $('#berat2').val();

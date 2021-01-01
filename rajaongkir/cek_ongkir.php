@@ -1,9 +1,8 @@
 <?php
-	// $asal = $_POST['asal'];
+$asal = $_POST['asal'];
 $id_kabupaten = $_POST['kab_id'];
 $kurir = $_POST['kurir'];
 $berat = $_POST['berat'];
-
 $curl_pos = curl_init();
 curl_setopt_array($curl_pos, array(
 	CURLOPT_URL => "http://api.rajaongkir.com/starter/cost",
@@ -13,7 +12,7 @@ curl_setopt_array($curl_pos, array(
 	CURLOPT_TIMEOUT => 30,
 	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 	CURLOPT_CUSTOMREQUEST => "POST",
-	CURLOPT_POSTFIELDS => "origin=152&destination=".$id_kabupaten."&weight=".$berat."&courier=pos",
+	CURLOPT_POSTFIELDS => "origin=".$asal."&destination=".$id_kabupaten."&weight=".$berat."&courier=pos",
 	CURLOPT_HTTPHEADER => array(
 		"content-type: application/x-www-form-urlencoded",
 		"key: 7d8f7fa91950173b7a453b207add5930"
@@ -29,10 +28,10 @@ curl_setopt_array($curl_jne, array(
 	CURLOPT_TIMEOUT => 30,
 	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 	CURLOPT_CUSTOMREQUEST => "POST",
-	CURLOPT_POSTFIELDS => "origin=152&destination=".$id_kabupaten."&weight=".$berat."&courier=jne",
+	CURLOPT_POSTFIELDS => "origin=".$asal."&destination=".$id_kabupaten."&weight=".$berat."&courier=jne",
 	CURLOPT_HTTPHEADER => array(
 		"content-type: application/x-www-form-urlencoded",
-		"key: 8f22875183c8c65879ef1ed0615d3371"
+		"key: 7d8f7fa91950173b7a453b207add5930"
 	),
 ));
 
@@ -45,10 +44,10 @@ curl_setopt_array($curl_tiki, array(
 	CURLOPT_TIMEOUT => 30,
 	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 	CURLOPT_CUSTOMREQUEST => "POST",
-	CURLOPT_POSTFIELDS => "origin=152&destination=".$id_kabupaten."&weight=".$berat."&courier=tiki",
+	CURLOPT_POSTFIELDS => "origin=".$asal."&destination=".$id_kabupaten."&weight=".$berat."&courier=tiki",
 	CURLOPT_HTTPHEADER => array(
 		"content-type: application/x-www-form-urlencoded",
-		"key: 8f22875183c8c65879ef1ed0615d3371"
+		"key: 7d8f7fa91950173b7a453b207add5930"
 	),
 ));
 
