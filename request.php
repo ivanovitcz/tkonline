@@ -60,7 +60,7 @@
 								<table class="table table-bordered">
 									<thead>
 										<tr>
-											<th>ID REQUEST</th>
+											<th width="5%">ID</th>
 											<th>Jenis Produk</th>
 											<th>Gambar</th>
 											<th>Total Bayar</th>
@@ -71,14 +71,14 @@
 										<?php 
 										error_reporting(E_ALL);
 										$id = $_SESSION['customer_id'];
-										$request = mysqli_query($koneksi,"select * from request where request_customer='$id' order by request_id desc");
+										$request = mysqli_query($koneksi,"select * from request,kategori where request_customer='$id' and request_kategori=kategori_id order by request_id desc");
 										while($i = mysqli_fetch_array($request)){
 											?>
 											<tr>
 												<td><?php echo $i['request_id'] ?></td>
-												<td><?php echo $i['request_kategori'] ?></td>
+												<td><?php echo $i['kategori_nama'] ?></td>
 												<td><img src="gambar/request/<?php echo $i['request_gambar']?>" class="img-fluid rounded shadow" style="max-height: 50px" alt=""></td>
-												<td><?php echo $i['request_harga'] ?></td>
+												<td><?php if($i['request_status'] == 'Disetujui' ) { echo $i['request_harga']; } else { echo "-"; } ?></td>
 												<td class="text-center">
 													<?php 
 													if($i['request_status'] == 'Tunggu'){

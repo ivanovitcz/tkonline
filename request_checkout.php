@@ -140,6 +140,7 @@
 												$request = mysqli_query($koneksi, "select * from request where request_id='$id'");
 												$i = mysqli_fetch_assoc($request);
 												$total = $i['request_harga'] * $i['request_jumlah'];
+												$berat = $i['request_berat'] * $i['request_jumlah'];
 													?>
 
 													<tr>
@@ -161,7 +162,7 @@
 												<tr>
 													<th class="empty" colspan="2"></th>
 													<th>TOTAL BERAT</th>
-													<th class="text-center"><?php echo $i['request_berat']; ?> Gram</th>
+													<th class="text-center"><?php echo $berat; ?> Gram</th>
 												</tr>
 												<tr>
 													<th class="empty" colspan="2"></th>
@@ -176,7 +177,7 @@
 											</tfoot>
 										</table>
 
-										<input name="berat" id="berat2" value="<?php echo $i['request_berat']; ?>" type="hidden">
+										<input name="berat" id="berat2" value="<?php echo $berat; ?>" type="hidden">
 
 										<input type="hidden" name="total_bayar" id="total_bayar" value="<?php echo $total; ?>">
 

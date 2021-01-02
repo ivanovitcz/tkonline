@@ -50,6 +50,12 @@
 											</td>
 										</tr>
 										<tr>
+											<th width="20%">Jumlah</th>	
+											<td>
+												<input type="text" class="form-control"  name="jumlah">
+											</td>
+										</tr>
+										<tr>
 											<th width="20%">Gambar</th>	
 											<td>
 												<input type="file" class="form-control-file" id="gambar" name="gambar" accept="image/*">
