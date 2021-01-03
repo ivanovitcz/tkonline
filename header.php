@@ -10,10 +10,9 @@
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="frontend/css/bootstrap.min.css" />
-
 	<!-- Slick -->
 	<link type="text/css" rel="stylesheet" href="frontend/css/slick.css" />
 	<link type="text/css" rel="stylesheet" href="frontend/css/slick-theme.css" />

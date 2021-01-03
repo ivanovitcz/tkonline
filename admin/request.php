@@ -31,13 +31,13 @@
                     <th>CUSTOMER</th>
                     <th>STATUS</th>
                     <th class="text-center">UPDATE STATUS</th>
-                    <th>TOTAL HARGA</th>
-                    <th>TOTAL BERAT</th>
-                    <th>TOTAL JUMLAH</th>
+                    <th>HARGA</th>
+                    <th>BERAT</th>
+                    <th>JUMLAH</th>
                     <th class="text-center" width="25%">OPSI</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="request_data">
                   <?php 
                   $no = 1;
                   $invoice = mysqli_query($koneksi,"select * from request,customer,kategori where customer_id=request_customer and request_kategori =kategori_id order by request_id desc");
@@ -71,17 +71,60 @@
                         <?php } ?>
                       </td>
 
-                      <td><?php if($i['request_status'] == 'Disetujui' ) { echo "Rp. ".number_format($i['request_harga'])." ,-"; } else { echo "-"; } ?></td>
-                      <td><?php if($i['request_status'] == 'Disetujui' ) { echo $i['request_berat']; } else { echo "-"; } ?></td>
-                      <td><?php if($i['request_status'] == 'Disetujui' ) { echo $i['request_jumlah']; } else { echo "-"; } ?></td>
+                      <td><?php echo "Rp. ".number_format($i['request_harga'])." ,-"; ?></td>
+                      <td><?php echo $i['request_berat'];  ?></td>
+                      <td><?php echo $i['request_jumlah']; ?></td>
 
                       
-                      
-                      <td class="text-center">    
+                      <?php if($i['request_status'] != 'Disetujui' ) { ?>
+                      <td >    
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit_<?php echo $i['request_id']; ?>">
+                          <i class="fa fa-search"></i> Edit
+                        </button>
 
+                        <div class="modal fade" id="edit_<?php echo $i['request_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Edit Request</h4>
+                              </div>
+                              <div class="modal-body">
+                              <form method="POST" action="request_act.php?id=<?php echo $i['request_id']; ?>">
+                                <div class="form-group">
+                                  <label>Harga Satuan</label>
+                                  <input type="text" class="form-control" name="harga" required="required" value="<?php echo $i['request_harga']; ?>">
+                                </div>
+                                &emsp;
+
+                                <div class="form-group">
+                                  <label>Berat</label>
+                                  <input type="text" class="form-control" name="berat" required="required" value="<?php echo $i['request_berat']; ?>">
+                                </div>
+                                
+                              
+
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" name="simpan" value="edit">Submit</button>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
 
                         <a class='btn btn-sm btn-danger' href="request_hapus.php?id=<?php echo $i['request_id']; ?>"><i class="fa fa-trash"></i></a>
                       </td>
+                      <?php } else { ?>
+                      <td>
+                        <button type="button" class="btn btn-primary btn-sm" disabled>
+                          <i class="fa fa-search"></i> Edit
+                        </button>
+                        <a class='btn btn-sm btn-danger' href="request_hapus.php?id=<?php echo $i['request_id']; ?>"><i class="fa fa-trash"></i></a>
+
+                      </td>
+                      <?php } ?>
                     </tr>
                     <?php 
                   }
@@ -98,3 +141,20 @@
 
 </div>
 <?php include 'footer.php'; ?>
+
+<script>
+  $('#request_data').editable({
+    container: 'body',
+    selector: 'td.berat',
+    url: "request_update.php",
+    title: 'Berat',
+    type: "POST",
+    //dataType: 'json',
+    validate: function(value){
+    if($.trim(value) == '')
+    {
+      return 'This field is required';
+    }
+    }
+  });
+</script>

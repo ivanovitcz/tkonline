@@ -78,7 +78,7 @@
 												<td><?php echo $i['request_id'] ?></td>
 												<td><?php echo $i['kategori_nama'] ?></td>
 												<td><img src="gambar/request/<?php echo $i['request_gambar']?>" class="img-fluid rounded shadow" style="max-height: 50px" alt=""></td>
-												<td><?php if($i['request_status'] == 'Disetujui' ) { echo $i['request_harga']; } else { echo "-"; } ?></td>
+												<td><?php if($i['request_status'] == 'Disetujui' || $i['request_status'] == 'Invoice Sudah Diisi' ) { echo "Rp. ".number_format($i['request_harga'])." ,-"; } else { echo "-"; } ?></td>
 												<td class="text-center">
 													<?php 
 													if($i['request_status'] == 'Tunggu'){
@@ -88,6 +88,8 @@
 													}elseif($i['request_status'] == 'Disetujui'){
 														echo "<span class='label label-success'>Disetujui</span>";
 														echo "&nbsp; <a class='label label-info' href='request_checkout.php?id=".$i['request_id']."'>Isi Invoice</a>";
+													}elseif($i['request_status'] == 'Invoice Sudah Diisi'){
+														echo "<span class='label label-success'>Invoice Sudah Diisi</span>";
 													}
 													?>
 												</td>	

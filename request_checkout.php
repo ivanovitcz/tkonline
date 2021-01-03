@@ -27,7 +27,7 @@
 					</div>
 
 					<div class="row">
-						<form method="post" action="checkout_act.php">
+						<form method="post" action="request_checkout_act.php">
 							<div class="col-lg-6">
 
 								<div class="row">
@@ -178,7 +178,8 @@
 										</table>
 
 										<input name="berat" id="berat2" value="<?php echo $berat; ?>" type="hidden">
-
+										<input name="jumlah" value="<?php echo $i['request_jumlah']; ?>" type="hidden">
+										<input name="request_id" value="<?php echo $i['request_id']; ?>" type="hidden">
 										<input type="hidden" name="total_bayar" id="total_bayar" value="<?php echo $total; ?>">
 
 							</div>

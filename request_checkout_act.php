@@ -30,24 +30,15 @@ $last_id = mysqli_insert_id($koneksi);
 $invoice = $last_id;
 
 
+$request = $_POST['request_id'];
+$jumlah = $_POST['jumlah'];
+$harga = $total_bayar;
 
-$jumlah_isi_keranjang = count($_SESSION['keranjang']);
+mysqli_query($koneksi,"insert into transaksi values(NULL,'$invoice','$request',NULL,'$jumlah','$harga')");
 
-for($a = 0; $a < $jumlah_isi_keranjang; $a++){
-	$id_produk = $_SESSION['keranjang'][$a]['produk'];
-	$jml = $_SESSION['keranjang'][$a]['jumlah'];
 
-	$isi = mysqli_query($koneksi,"select * from produk where produk_id='$id_produk'");
-	$i = mysqli_fetch_assoc($isi);
+//update status request
 
-	$produk = $i['produk_id'];
-	$jumlah = $_SESSION['keranjang'][$a]['jumlah'];
-	$harga = $total_bayar;
-	
-	mysqli_query($koneksi,"insert into transaksi values(NULL,'$invoice',NULL,'$produk','$jumlah','$harga')");
-
-	unset($_SESSION['keranjang'][$a]);
-}
-
+mysqli_query($koneksi, "UPDATE request SET request_status='Invoice Sudah Diisi' WHERE request_id ='$request'");
 
 header("location:customer_pesanan.php?alert=sukses");

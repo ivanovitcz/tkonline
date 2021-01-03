@@ -52,6 +52,7 @@
 <script src="../assets/dist/js/demo.js"></script>
 <script src="../assets/bower_components/ckeditor/ckeditor.js"></script>
 
+
 <script>
   $(document).ready(function(){
 
