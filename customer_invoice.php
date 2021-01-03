@@ -65,29 +65,57 @@
 										</thead>
 										<tbody>
 											<?php 
-											$no = 1;
-											$total = 0;
-											$transaksi = mysqli_query($koneksi,"select * from transaksi,produk where transaksi_produk=produk_id and transaksi_invoice='$id_invoice'");
-											while($d=mysqli_fetch_array($transaksi)){
-												$total += $d['transaksi_harga'];
-												?>
-												<tr>
-													<td class="text-center"><?php echo $no++; ?></td>
-													<td>
-														<center>
-															<?php if($d['produk_foto1'] == ""){ ?>
-																<img src="gambar/sistem/produk.png" style="width: 50px;height: auto">
-															<?php }else{ ?>
-																<img src="gambar/produk/<?php echo $d['produk_foto1'] ?>" style="width: 50px;height: auto">
-															<?php } ?>
-														</center>
-													</td>
-													<td><?php echo $d['produk_nama']; ?></td>
-													<td class="text-center"><?php echo "Rp. ".number_format($d['transaksi_harga']).",-"; ?></td>
-													<td class="text-center"><?php echo number_format($d['transaksi_jumlah']); ?></td>
-													<td class="text-center"><?php echo "Rp. ".number_format($d['transaksi_jumlah'] * $d['transaksi_harga'])." ,-"; ?></td>
-												</tr>
+											$cek = mysqli_query($koneksi,"select * from transaksi where transaksi_invoice='$id_invoice'");
+											$cek_fetch = mysqli_fetch_array($cek);
+											if($cek_fetch['transaksi_produk'] != null) {
+												$no = 1;
+												$total = 0;
+												$transaksi = mysqli_query($koneksi,"select * from transaksi,produk where transaksi_produk=produk_id and transaksi_invoice='$id_invoice'");
+												while($d=mysqli_fetch_array($transaksi)){
+													$total += ($d['transaksi_jumlah'] * $d['produk_harga']);
+													?>
+													<tr>
+														<td class="text-center"><?php echo $no++; ?></td>
+														<td>
+															<center>
+																<?php if($d['produk_foto1'] == ""){ ?>
+																	<img src="gambar/sistem/produk.png" style="width: 50px;height: auto">
+																<?php }else{ ?>
+																	<img src="gambar/produk/<?php echo $d['produk_foto1'] ?>" style="width: 50px;height: auto">
+																<?php } ?>
+															</center>
+														</td>
+														<td><?php echo $d['produk_nama']; ?></td>
+														<td class="text-center"><?php echo "Rp. ".number_format($d['produk_harga']).",-"; ?></td>
+														<td class="text-center"><?php echo number_format($d['transaksi_jumlah']); ?></td>
+														<td class="text-center"><?php echo "Rp. ".number_format($d['transaksi_jumlah'] * $d['produk_harga'])." ,-"; ?></td>
+													</tr>
 												<?php 
+												}
+											} else {
+												$no = 1;
+												$total = 0;
+												$transaksi = mysqli_query($koneksi,"select * from transaksi,request where transaksi_request=request_id and transaksi_invoice='$id_invoice'");
+												$d=mysqli_fetch_array($transaksi);
+												$total = $d['transaksi_jumlah'] * $d['request_harga'];
+												?>
+													<tr>
+														<td class="text-center">1</td>
+														<td>
+															<center>
+																<?php if($d['request_gambar'] == ""){ ?>
+																	<img src="gambar/sistem/produk.png" style="width: 50px;height: auto">
+																<?php }else{ ?>
+																	<img src="gambar/request/<?php echo $d['request_gambar'] ?>" style="width: 50px;height: auto">
+																<?php } ?>
+															</center>
+														</td>
+														<td>Produk Custome</td>
+														<td class="text-center"><?php echo "Rp. ".number_format($d['request_harga']).",-"; ?></td>
+														<td class="text-center"><?php echo number_format($d['transaksi_jumlah']); ?></td>
+														<td class="text-center"><?php echo "Rp. ".number_format($total)." ,-"; ?></td>
+													</tr>
+												<?php
 											}
 											?>
 										</tbody>

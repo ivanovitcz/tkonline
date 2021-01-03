@@ -42,7 +42,7 @@ for($a = 0; $a < $jumlah_isi_keranjang; $a++){
 
 	$produk = $i['produk_id'];
 	$jumlah = $_SESSION['keranjang'][$a]['jumlah'];
-	$harga = $total_bayar;
+	$harga = $_POST['total_bayar'];
 	
 	mysqli_query($koneksi,"insert into transaksi values(NULL,'$invoice',NULL,'$produk','$jumlah','$harga')");
 

@@ -150,15 +150,17 @@
 											// cek apakah produk sudah ada dalam keranjang
 												$jumlah_total = 0;
 												$total = 0;
+												$total_berat = 0;
 												for($a = 0; $a < $jumlah_isi_keranjang; $a++){
 													$id_produk = $_SESSION['keranjang'][$a]['produk'];
 													$jml = $_SESSION['keranjang'][$a]['jumlah'];
-
+													
 													$isi = mysqli_query($koneksi,"select * from produk where produk_id='$id_produk'");
 													$i = mysqli_fetch_assoc($isi);
 
 													$total += $i['produk_harga']*$jml;
 													$jumlah_total += $total;
+													$total_berat += ($_SESSION['keranjang'][$a]['jumlah'] * $i['produk_berat']);
 													?>
 
 													<tr>

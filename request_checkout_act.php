@@ -32,7 +32,7 @@ $invoice = $last_id;
 
 $request = $_POST['request_id'];
 $jumlah = $_POST['jumlah'];
-$harga = $total_bayar;
+$harga = $_POST['total_bayar'];
 
 mysqli_query($koneksi,"insert into transaksi values(NULL,'$invoice','$request',NULL,'$jumlah','$harga')");
 
