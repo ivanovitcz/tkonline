@@ -27,7 +27,8 @@
                 <thead>
                   <tr>
                     <th width="1%">NO</th>
-                    <th>NAMA PRODUK</th>
+                    <th>NAMA BAHAN BAKU</th>
+                    <th>SUPPLIER</th>
                     <th>KATEGORI</th>
                     <th>HARGA</th>
                     <th>JUMLAH</th>
@@ -46,14 +47,15 @@
                     <tr>
                       <td><?php echo $no++; ?></td>
                       <td><?php echo $d['bahanbaku_nama']; ?></td>
+                      <td><?php echo $d['bahanbaku_suplier']; ?></td>
                       <td><?php echo $d['kategori_nama']; ?></td>
                       <td><?php echo "Rp. ".number_format($d['bahanbaku_harga']).",-"; ?></td>
                       <td><?php echo number_format($d['bahanbaku_jumlah']); ?></td>
                       <td><?php echo number_format($d['bahanbaku_panjang']); ?></td>
                       <td><?php echo number_format($d['bahanbaku_lebar']); ?></td>
                       <td>                        
-                        <a class="btn btn-warning btn-sm" href="produk_edit.php?id=<?php echo $d['produk_id'] ?>"><i class="fa fa-cog"></i></a>
-                        <a class="btn btn-danger btn-sm" href="produk_hapus.php?id=<?php echo $d['produk_id'] ?>"><i class="fa fa-trash"></i></a>
+                        <a class="btn btn-warning btn-sm" href="produk_edit.php?id=<?php echo $d['bahanbaku_id'] ?>"><i class="fa fa-cog"></i></a>
+                        <a class="btn btn-danger btn-sm" href="produk_hapus.php?id=<?php echo $d['bahanbaku_id'] ?>"><i class="fa fa-trash"></i></a>
                       </td>
                     </tr>
                     <?php 

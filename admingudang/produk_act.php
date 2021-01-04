@@ -4,13 +4,11 @@ $kategori = $_POST['kategori'];
 $nama  = $_POST['nama'];
 $harga = $_POST['harga'];
 $jumlah = $_POST['jumlah'];
-$jumlah = $_POST['panjang'];
-$jumlah = $_POST['lebar'];
+$panjang = $_POST['panjang'];
+$lebar = $_POST['lebar'];
+$supplier = $_POST['supplier'];
 
 
-$rand = rand();
-
-mysqli_query($koneksi, "insert into produk values (NULL,'$kategori','$nama','$harga','$jumlah','$panjang','$lebar')");
-
+mysqli_query($koneksi,"INSERT into bahanbaku values (NULL,'$kategori','$nama','$harga','$jumlah','$panjang','$lebar','$supplier')");
 
 header("location:produk.php");

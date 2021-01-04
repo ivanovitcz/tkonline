@@ -32,6 +32,11 @@
               </div>
 
               <div class="form-group">
+                <label>Supplier</label>
+                <input type="text" class="form-control" name="supplier" required="required" placeholder="Masukkan Nama Supplier..">
+              </div>
+
+              <div class="form-group">
                 <label>Kategori Produk</label>
                 <div class="row">
                   <div class="col-lg-4">

@@ -14,7 +14,7 @@ $filename1 = $_FILES['foto1']['name'];
 $filename2 = $_FILES['foto2']['name'];
 $filename3 = $_FILES['foto3']['name'];
 
-mysqli_query($koneksi, "insert into produk values (NULL,'$nama','$kategori','$harga','$keterangan','$jumlah','$berat','','','')");
+mysqli_query($koneksi, "INSERT INTO produk values (NULL,'$nama','$kategori','$harga','$keterangan','$jumlah','$berat','','','')");
 
 
 $last_id = mysqli_insert_id($koneksi);

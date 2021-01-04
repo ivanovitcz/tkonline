@@ -41,18 +41,17 @@
                   $no=1;
                   $data = mysqli_query($koneksi,"SELECT * FROM kategori");
                   while($d = mysqli_fetch_array($data)){
-                    ?>
+                    if($d['kategori_id'] != 1){ ?>
                     <tr>
                       <td><?php echo $no++; ?></td>
                       <td><?php echo $d['kategori_nama']; ?></td>
                       <td>                      
-                        <?php if($d['kategori_id'] != 1){ ?>  
-                          <a class="btn btn-warning btn-sm" href="kategori_edit.php?id=<?php echo $d['kategori_id'] ?>"><i class="fa fa-cog"></i></a>
-                          <a class="btn btn-danger btn-sm" href="kategori_hapus_konfir.php?id=<?php echo $d['kategori_id'] ?>"><i class="fa fa-trash"></i></a>
-                        <?php } ?>
+                        <a class="btn btn-warning btn-sm" href="kategori_edit.php?id=<?php echo $d['kategori_id'] ?>"><i class="fa fa-cog"></i></a>
+                        <a class="btn btn-danger btn-sm" href="kategori_hapus_konfir.php?id=<?php echo $d['kategori_id'] ?>"><i class="fa fa-trash"></i></a>
                       </td>
                     </tr>
                     <?php 
+                    }
                   }
                   ?>
                 </tbody>

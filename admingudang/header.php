@@ -57,7 +57,7 @@
                 <?php }else{ ?>
                   <img src="../gambar/user/<?php echo $profil['admin_foto'] ?>" class="user-image">
                 <?php } ?>
-                <span class="hidden-xs"><?php echo $_SESSION['nama']; ?> - Admin</span>
+                <span class="hidden-xs"><?php echo $_SESSION['nama_gudang']; ?> - Admin</span>
               </a>
             </li>
             <li>
@@ -84,7 +84,7 @@
             <?php } ?>
           </div>
           <div class="pull-left info">
-            <p><?php echo $_SESSION['nama']; ?></p>
+            <p><?php echo $_SESSION['nama_gudang']; ?></p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
@@ -111,7 +111,7 @@
 
            <li>
             <a href="transaksi.php">
-              <i class="fa fa-retweet"></i> <span>TRANSAKSI / PESANAN</span>
+              <i class="fa fa-retweet"></i> <span>TRANSAKSI BAHAN BAKU</span>
             </a>
           </li>
 
@@ -120,13 +120,7 @@
               <i class="fa fa-file"></i> <span>LAPORAN PENJUALAN</span>
             </a>
           </li> 
-
-          <li>
-            <a href="admin.php">
-              <i class="fa fa-user"></i> <span>DATA ADMIN</span>
-            </a>
-          </li>
-
+          
           <li>
             <a href="gantipassword.php">
               <i class="fa fa-lock"></i> <span>GANTI PASSWORD</span>
