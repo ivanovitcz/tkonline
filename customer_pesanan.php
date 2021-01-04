@@ -84,7 +84,7 @@
 													}elseif($i['invoice_status'] == 3){
 														echo "<span class='label label-primary'>Dikonfirmasi & Sedang Diproses</span>";
 													}elseif($i['invoice_status'] == 4){
-														echo "<span class='label label-warning'>Dikirim</span>";
+														echo "<span class='label label-info'>Dikirim</span>";
 													}elseif($i['invoice_status'] == 5){
 														echo "<span class='label label-success'>Selesai</span>";
 													}

@@ -40,6 +40,9 @@ for($a = 0; $a < $jumlah_isi_keranjang; $a++){
 	$isi = mysqli_query($koneksi,"select * from produk where produk_id='$id_produk'");
 	$i = mysqli_fetch_assoc($isi);
 
+	$sisa = $i['produk_jumlah'] - $jml;
+	mysqli_query($koneksi, "UPDATE produk SET produk_jumlah='$sisa' WHERE produk_id ='$id_produk'");
+
 	$produk = $i['produk_id'];
 	$jumlah = $_SESSION['keranjang'][$a]['jumlah'];
 	$harga = $_POST['total_bayar'];

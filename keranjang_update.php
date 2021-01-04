@@ -8,13 +8,15 @@ session_start();
 $jumlah_isi_keranjang = count($_SESSION['keranjang']);
 
 for($a = 0;$a < $jumlah_isi_keranjang; $a++){
-	
-	$_SESSION['keranjang'][$a] = array(
-		'produk' => $produk[$a],
-		'jumlah' => $jumlah[$a]
-	);
-
+	$isi = mysqli_query($koneksi, "SELECT * FROM produk WHERE produk_id ='$produk[$a]'");
+	$i = mysqli_fetch_assoc($isi);
+	if($i['produk_jumlah'] >= $jumlah[$a]) {
+		$_SESSION['keranjang'][$a] = array(
+			'produk' => $produk[$a],
+			'jumlah' => $jumlah[$a]
+		);
+	} 
 }
 
-header("location:keranjang.php");
+header("location:keranjang.php?alert=gagal");
 ?>

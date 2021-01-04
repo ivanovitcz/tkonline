@@ -59,7 +59,7 @@
                         }elseif($i['invoice_status'] == 3){
                           echo "<span class='label label-primary'>Dikonfirmasi & Sedang Diproses</span>";
                         }elseif($i['invoice_status'] == 4){
-                          echo "<span class='label label-warning'>Dikirim</span>";
+                          echo "<span class='label label-info'>Dikirim</span>";
                         }elseif($i['invoice_status'] == 5){
                           echo "<span class='label label-success'>Selesai</span>";
                         }
@@ -79,9 +79,39 @@
                         </form>
                       </td>
                       <td class="text-center">    
+                        <?php if($i['invoice_status'] == 4) { ?>
+                          <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#resi_<?php echo $i['request_id']; ?>">
+                            Isi Resi
+                          </button>
 
+                          <div class="modal fade" id="resi_<?php echo $i['request_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <h4 class="modal-title" id="myModalLabel">Isi Resi</h4>
+                                </div>
+                                <div class="modal-body">
+                                <form method="POST" action="transaksi_act.php?id=<?php echo $i['invoice_id']; ?>">
+                                  <div class="form-group">
+                                    <label>Resi</label>
+                                    <input type="text" class="form-control" name="resi" required="required" value="<?php echo $i['invoice_resi']; ?>">
+                                  </div>
+                                  
+                                
+
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-primary" name="simpan">Submit</button>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        <?php } ?>
                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#buktiPembayaran_<?php echo $i['invoice_id']; ?>">
-                          <i class="fa fa-search"></i> Bukti Pembayaran
+                          <i class="fa fa-search"></i> Bukti Bayar
                         </button>
 
                         <div class="modal fade" id="buktiPembayaran_<?php echo $i['invoice_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -99,7 +129,7 @@
                                     echo "Bukti pembayaran belum diupload oleh pembeli/customer.";
                                   }else{
                                     ?>
-                                    <img src="../gambar/bukti_pembayaran/<?php echo $i['invoice_bukti']; ?>" alt="" style="width: 100%">
+                                    <img src="../gambar/bukti_pembayaran/<?php echo $i['invoice_bukti']; ?>" alt="" style="height: 300px">
                                     <?php
                                   }
                                   ?>

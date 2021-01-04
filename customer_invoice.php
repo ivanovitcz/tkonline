@@ -156,9 +156,11 @@
 								}elseif($i['invoice_status'] == 3){
 									echo "<span class='label label-primary'>Dikonfirmasi & Sedang Diproses</span>";
 								}elseif($i['invoice_status'] == 4){
-									echo "<span class='label label-warning'>Dikirim</span>";
+									echo "<span class='label label-info'>Dikirim</span><br><br>";
+									echo "Nomor Resi : ".$i['invoice_resi'];
 								}elseif($i['invoice_status'] == 5){
-									echo "<span class='label label-success'>Selesai</span>";
+									echo "<span class='label label-success'>Selesai</span><br><br>";
+									echo "Nomor Resi : ".$i['invoice_resi'];
 								}
 								?>
 

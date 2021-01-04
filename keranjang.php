@@ -35,6 +35,8 @@
 						if(isset($_GET['alert'])){
 							if($_GET['alert'] == "keranjang_kosong"){
 								echo "<div class='alert alert-danger text-center'>Tidak bisa checkout, karena keranjang belanja masih kosong. <br/> Silahkan belanja terlebih dulu.</div>";
+							} else if($_GET['alert'] == "gagal") {
+								echo "<div class='alert alert-danger text-center'>Jumlah yang Diminta Melebihi Stok Barang!</div>";
 							}
 						}
 						?>
@@ -72,37 +74,45 @@
 
 											$isi = mysqli_query($koneksi,"select * from produk where produk_id='$id_produk'");
 											$i = mysqli_fetch_assoc($isi);
-
-											$total += $i['produk_harga']*$jml;
-											$jumlah_total += $total;
+											if($i['produk_jumlah'] > 0) {
+												$total += $i['produk_harga']*$jml;
+												$jumlah_total += $total;
 											?>
-
 											<tr>
-												<td class="thumb">
-													<?php if($i['produk_foto1'] == ""){ ?>
-														<img src="gambar/sistem/produk.png">
-													<?php }else{ ?>
-														<img src="gambar/produk/<?php echo $i['produk_foto1'] ?>">
-													<?php } ?>
+													<td class="thumb">
+														<?php if($i['produk_foto1'] == ""){ ?>
+															<img src="gambar/sistem/produk.png">
+														<?php }else{ ?>
+															<img src="gambar/produk/<?php echo $i['produk_foto1'] ?>">
+														<?php } ?>
+													</td>
+													<td class="details">
+														<a href="produk_detail.php?id=<?php echo $i['produk_id'] ?>"><?php echo $i['produk_nama'] ?></a>
+													<!-- <ul>
+														<li><span>Size: XL</span></li>
+														<li><span>Color: Camelot</span></li>
+													</ul> -->
 												</td>
-												<td class="details">
-													<a href="produk_detail.php?id=<?php echo $i['produk_id'] ?>"><?php echo $i['produk_nama'] ?></a>
-												<!-- <ul>
-													<li><span>Size: XL</span></li>
-													<li><span>Color: Camelot</span></li>
-												</ul> -->
-											</td>
-											<td class="price text-center"><strong><?php echo "Rp. ".number_format($i['produk_harga']) . " ,-"; ?></strong></td>
-											<td class="qty text-center">
-												<input class="harga" id="harga_<?php echo $i['produk_id'] ?>" type="hidden" value="<?php echo $i['produk_harga']; ?>">
-												<input name="produk[]" value="<?php echo $i['produk_id'] ?>" type="hidden">
-												<input class="input jumlah" name="jumlah[]" id="jumlah_<?php echo $i['produk_id'] ?>" nomor="<?php echo $i['produk_id'] ?>" type="number" value="<?php echo $_SESSION['keranjang'][$a]['jumlah']; ?>" min="1">
-											</td>
-											<td class="total text-center"><strong class="primary-color total_harga" id="total_<?php echo $i['produk_id'] ?>"><?php echo "Rp. ".number_format($total) . " ,-"; ?></strong></td>
-											<td class="text-right"><a class="main-btn icon-btn" href="keranjang_hapus.php?id=<?php echo $i['produk_id']; ?>&redirect=keranjang"><i class="fa fa-close"></i></a></td>
-										</tr>
+												<td class="price text-center"><strong><?php echo "Rp. ".number_format($i['produk_harga']) . " ,-"; ?></strong></td>
+												<td class="qty text-center">
+													<input class="harga" id="harga_<?php echo $i['produk_id'] ?>" type="hidden" value="<?php echo $i['produk_harga']; ?>">
+													<input name="produk[]" value="<?php echo $i['produk_id'] ?>" type="hidden">
+													<input class="input jumlah" name="jumlah[]" id="jumlah_<?php echo $i['produk_id'] ?>" nomor="<?php echo $i['produk_id'] ?>" type="number" value="<?php echo $_SESSION['keranjang'][$a]['jumlah']; ?>" min="1">
+												</td>
+												<td class="total text-center"><strong class="primary-color total_harga" id="total_<?php echo $i['produk_id'] ?>"><?php echo "Rp. ".number_format($total) . " ,-"; ?></strong></td>
+												<td class="text-right"><a class="main-btn icon-btn" href="keranjang_hapus.php?id=<?php echo $i['produk_id']; ?>&redirect=keranjang"><i class="fa fa-close"></i></a></td>
+											</tr>
 
 										<?php
+										} else {
+											?>
+												<tr>
+													<td colspan="6" class="text-center">
+														Stok Barang <?php unset($_SESSION['keranjang'][$a]); echo $i['produk_nama']; ?> Habis
+													</td>
+												</tr>
+											<?php
+										}
 										$total = 0;
 
 									}
