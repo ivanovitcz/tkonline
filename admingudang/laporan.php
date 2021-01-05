@@ -89,6 +89,7 @@
                     <tr>
                       <th width="1%">NO</th>
                       <th>NAMA</th>
+                      <th>KATEGORI</th>
                       <th>SUPPLIER</th>
                       <th>JUMLAH</th>
                       <th>HARGA</th>
@@ -98,12 +99,13 @@
                   <tbody>
                     <?php 
                     $no=1;
-                    $data = mysqli_query($koneksi,"SELECT * FROM transaksi_bahanbaku WHERE date(tanggal_input) >= '$tgl_dari' AND date(tanggal_input) <= '$tgl_sampai'");
+                    $data = mysqli_query($koneksi,"SELECT * FROM transaksi_bahanbaku,kategori2 WHERE transaksi_bahanbaku.kategori_id=kategori2.kategori_id AND date(tanggal_input) >= '$tgl_dari' AND date(tanggal_input) <= '$tgl_sampai'");
                     while($i = mysqli_fetch_array($data)){
                       ?>
                       <tr>
                         <td><?php echo $no++ ?></td>
                         <td><?php echo $i['nama'] ?></td>
+                        <td><?php echo $i['kategori_nama'] ?></td>
                         <td><?php echo $i['suplier'] ?></td>
                         <td><?php echo number_format($i['jumlah']); ?></td>
                         <td><?php echo "Rp. ".number_format($i['harga'])." ,-" ?></td>
