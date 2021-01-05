@@ -28,14 +28,20 @@
 				<div class="footer">
 					<h3 class="footer-header">My Account</h3>
 					<ul class="list-links">
+						<?php 
+							if(isset($_SESSION['role'])){
+						?>
 						<li><a href="keranjang.php">Keranjang</a></li>
 						<li><a href="checkout.php">Checkout</a></li>
-						<?php 
-							if($_SESSION['role'] != 'customer') {
+						
+						<?php
+							} 
+						if(isset($_SESSION['role'])){
 						?>
-						<li><a href="daftar.php">Daftar</a></li>
-						<li><a href="masuk.php">Login</a></li>
-						<?php } ?>
+						<?php } else { ?>
+							<li><a href="daftar.php">Daftar</a></li>
+							<li><a href="masuk.php">Login</a></li>
+						<?php }?>
 					</ul>
 				</div>
 			</div>
