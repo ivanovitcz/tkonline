@@ -55,11 +55,13 @@
                           echo "<span class='label label-danger'>Tidak Disetujui</span>";
                         }elseif($i['request_status'] == 'Disetujui'){
                           echo "<span class='label label-success'>Disetujui</span>";
+                        }elseif($i['request_status'] == 'Invoice Sudah Diisi'){
+                          echo "<span class='label label-info'>Invoice Sudah Diisi</span>";
                         }
                         ?>
                       </td>
                       <td class="text-center">
-                        <?php if($i['request_status'] == 'Disetujui') { echo "Tidak Bisa Diubah"; } else { ?>
+                        <?php if($i['request_status'] == 'Disetujui' || $i['request_status'] == 'Invoice Sudah Diisi') { echo "Tidak Bisa Diubah"; } else { ?>
                         <form action="request_status.php" method="post">
                           <input type="hidden" value="<?php echo $i['request_id'] ?>" name="request">
                           <select name="status" id="" class="form-control" onchange="form.submit()">
@@ -78,6 +80,36 @@
                       
                       <?php if($i['request_status'] != 'Disetujui' ) { ?>
                       <td >    
+                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#request_<?php echo $i['request_id']; ?>">
+                          <i class="fa fa-picture"></i> Detail Request
+                        </button>
+
+                        <div class="modal fade" id="request_<?php echo $i['request_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Detail Request</h4>
+                              </div>
+                              <div class="modal-body">
+
+                                <center>
+                                  <img src="../gambar/request/<?php echo $i['request_gambar']; ?>" alt="" style="height: 300px">
+                                  <br>
+                                  <br>
+                                  <p>
+                                    <?php echo $i['request_keterangan']; ?>
+                                  </p>
+                                </center>
+
+
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit_<?php echo $i['request_id']; ?>">
                           <i class="fa fa-search"></i> Edit
                         </button>
@@ -118,6 +150,7 @@
                       </td>
                       <?php } else { ?>
                       <td>
+                        
                         <button type="button" class="btn btn-primary btn-sm" disabled>
                           <i class="fa fa-search"></i> Edit
                         </button>
