@@ -19,7 +19,7 @@
 
           <div class="box-header">
             <h3 class="box-title">Data Bahan Baku</h3>
-            <a href="produk_tambah.php" class="btn btn-info btn-sm pull-right"><i class="fa fa-plus"></i> &nbsp Tambah Bahan Baku</a>              
+            <a href="produk_tambah.php" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus"></i> &nbsp Input Bahan Baku Baru</a>              
           </div>
           <div class="box-body">
             <div class="table-responsive">
@@ -32,9 +32,9 @@
                     <th>KATEGORI</th>
                     <th>HARGA</th>
                     <th>JUMLAH</th>
-                    <th>PANJANG (cm)</th>
-                    <th>LEBAR (cm)</th>
-                    <th width="10%">OPSI</th>
+                    <th>PANJANG</th>
+                    <th>LEBAR</th>
+                    <th width="15%">OPSI</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -51,9 +51,10 @@
                       <td><?php echo $d['kategori_nama']; ?></td>
                       <td><?php echo "Rp. ".number_format($d['bahanbaku_harga']).",-"; ?></td>
                       <td><?php echo number_format($d['bahanbaku_jumlah']); ?></td>
-                      <td><?php echo number_format($d['bahanbaku_panjang']); ?></td>
-                      <td><?php echo number_format($d['bahanbaku_lebar']); ?></td>
+                      <td><?php echo number_format($d['bahanbaku_panjang']); ?> cm</td>
+                      <td><?php echo number_format($d['bahanbaku_lebar']); ?> cm</td>
                       <td>                        
+                        <a class="btn btn-info btn-sm m-0" href="produk_tambah_stok.php?id=<?php echo $d['bahanbaku_id'] ?>"><i class="fa fa-plus"></i></a>
                         <a class="btn btn-warning btn-sm" href="produk_edit.php?id=<?php echo $d['bahanbaku_id'] ?>"><i class="fa fa-cog"></i></a>
                         <a class="btn btn-danger btn-sm" href="produk_hapus.php?id=<?php echo $d['bahanbaku_id'] ?>"><i class="fa fa-trash"></i></a>
                       </td>

@@ -109,15 +109,9 @@
             </a>
           </li>
 
-           <li>
-            <a href="transaksi.php">
-              <i class="fa fa-retweet"></i> <span>TRANSAKSI BAHAN BAKU</span>
-            </a>
-          </li>
-
           <li>
             <a href="laporan.php">
-              <i class="fa fa-file"></i> <span>LAPORAN PENJUALAN</span>
+              <i class="fa fa-file"></i> <span>DAFTAR TRANSAKSI</span>
             </a>
           </li> 
           

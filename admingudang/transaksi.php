@@ -4,8 +4,8 @@
 
   <section class="content-header">
     <h1>
-      Transaksi
-      <small>Data Transaksi / Pesanan</small>
+      Transaksi Bahan Baku
+      <small>Data Transaksi Bahan Baku</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -19,7 +19,7 @@
         <div class="box box-info">
 
           <div class="box-header">
-            <h3 class="box-title">Transaksi / Pesanan</h3>
+            <h3 class="box-title">Transaksi Bahan Baku</h3>
           </div>
           <div class="box-body">
             <div class="table-responsive">

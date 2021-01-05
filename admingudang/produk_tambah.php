@@ -94,7 +94,7 @@
               </div>
 
               <div class="form-group">
-                <input type="submit" class="btn btn-sm btn-primary" value="Simpan">
+                <input type="submit" class="btn btn-sm btn-primary" name="simpan" value="Tambah">
               </div>
 
             </form>

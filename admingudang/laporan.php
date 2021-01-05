@@ -4,8 +4,8 @@
 
   <section class="content-header">
     <h1>
-      LAPORAN
-      <small>Data Laporan Penjualan</small>
+      DAFTAR TRANSAKSI / LAPORAN
+      <small>Data Laporan Transaksi</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -18,7 +18,7 @@
       <section class="col-lg-12">
         <div class="box box-info">
           <div class="box-header">
-            <h3 class="box-title">Filter Laporan</h3>
+            <h3 class="box-title">Filter</h3>
           </div>
           <div class="box-body">
             <form method="get" action="">
@@ -88,42 +88,26 @@
                   <thead>
                     <tr>
                       <th width="1%">NO</th>
-                      <th>INVOICE</th>
-                      <th>TANGGAL MASUK</th>
-                      <th>NAMA SUPLIER</th>
+                      <th>NAMA</th>
+                      <th>SUPPLIER</th>
                       <th>JUMLAH</th>
-                      <th>STATUS</th>
+                      <th>HARGA</th>
+                      <th>TANGGAL</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php 
                     $no=1;
-                    $data = mysqli_query($koneksi,"SELECT * FROM invoice,customer WHERE invoice_customer=customer_id and date(invoice_tanggal) >= '$tgl_dari' AND date(invoice_tanggal) <= '$tgl_sampai'");
+                    $data = mysqli_query($koneksi,"SELECT * FROM transaksi_bahanbaku WHERE date(tanggal_input) >= '$tgl_dari' AND date(tanggal_input) <= '$tgl_sampai'");
                     while($i = mysqli_fetch_array($data)){
                       ?>
                       <tr>
                         <td><?php echo $no++ ?></td>
-                        <td>INVOICE-00<?php echo $i['invoice_id'] ?></td>
-                        <td><?php echo date('d-m-Y', strtotime($i['invoice_tanggal'])); ?></td>
-                        <td><?php echo $i['customer_nama'] ?></td>
-                        <td><?php echo "Rp. ".number_format($i['invoice_total_bayar'])." ,-" ?></td>
-                        <td>
-                          <?php 
-                          if($i['invoice_status'] == 0){
-                            echo "Menunggu Pembayaran";
-                          }elseif($i['invoice_status'] == 1){
-                            echo "Menunggu Konfirmasi";
-                          }elseif($i['invoice_status'] == 2){
-                            echo "Ditolak";
-                          }elseif($i['invoice_status'] == 3){
-                            echo "Dikonfirmasi & Sedang Diproses";
-                          }elseif($i['invoice_status'] == 4){
-                            echo "Dikirim";
-                          }elseif($i['invoice_status'] == 5){
-                            echo "Selesai";
-                          }
-                          ?>
-                        </td>
+                        <td><?php echo $i['nama'] ?></td>
+                        <td><?php echo $i['suplier'] ?></td>
+                        <td><?php echo number_format($i['jumlah']); ?></td>
+                        <td><?php echo "Rp. ".number_format($i['harga'])." ,-" ?></td>
+                        <td><?php echo $i['tanggal_input'] ?></td>
                       </tr>
                       <?php 
                     }
