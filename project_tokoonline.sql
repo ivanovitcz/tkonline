@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 05, 2021 at 07:43 PM
+-- Generation Time: Jan 05, 2021 at 08:11 PM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.3
 
@@ -55,7 +55,7 @@ CREATE TABLE `admingudang` (
   `admingudang_username` varchar(100) NOT NULL,
   `admingudang_password` varchar(100) NOT NULL,
   `admingudang_foto` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admingudang`
@@ -79,7 +79,7 @@ CREATE TABLE `bahanbaku` (
   `bahanbaku_panjang` int NOT NULL,
   `bahanbaku_lebar` int NOT NULL,
   `bahanbaku_suplier` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `bahanbaku`
@@ -201,7 +201,7 @@ INSERT INTO `kategori` (`kategori_id`, `kategori_nama`) VALUES
 CREATE TABLE `kategori2` (
   `kategori_id` int NOT NULL,
   `kategori_nama` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `kategori2`
@@ -254,7 +254,7 @@ CREATE TABLE `request` (
   `request_harga` int DEFAULT NULL,
   `request_berat` int DEFAULT NULL,
   `request_jumlah` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `request`
@@ -333,7 +333,7 @@ CREATE TABLE `transaksi_bahanbaku` (
   `panjang` int NOT NULL,
   `lebar` int NOT NULL,
   `tanggal_input` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `transaksi_bahanbaku`

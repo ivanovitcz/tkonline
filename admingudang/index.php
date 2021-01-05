@@ -64,7 +64,7 @@
             <table class="table table-bordered">
               <tr>
                 <th width="30%">Nama</th>
-                <td><?php echo $_SESSION['nama']; ?></td>
+                <td><?php echo $_SESSION['nama_gudang']; ?></td>
               </tr>
               <tr>
                 <th>Username</th>

@@ -80,11 +80,11 @@
                       </td>
                       <td class="text-center">    
                         <?php if($i['invoice_status'] == 4) { ?>
-                          <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#resi_<?php echo $i['request_id']; ?>">
+                          <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#resi_<?php echo $i['invoice_id']; ?>">
                             Isi Resi
                           </button>
 
-                          <div class="modal fade" id="resi_<?php echo $i['request_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal fade" id="resi_<?php echo $i['invoice_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">

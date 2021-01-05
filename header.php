@@ -103,7 +103,8 @@ if($file == "checkout.php"){
 					<ul class="header-btns">
 
 						<?php 
-							if($_SESSION['role'] == 'customer') {
+							if(isset($_SESSION['role'])){
+								if($_SESSION['role'] == 'customer') {
 						?>
 		
 						<!-- Cart -->
@@ -195,6 +196,7 @@ if($file == "checkout.php"){
 						</li>
 						<!-- /Cart -->
 						<?php
+								}
 							}
 						?>
 
@@ -274,13 +276,14 @@ if($file == "checkout.php"){
 					<ul class="menu-list">
 						<li><a href="index.php">Home</a></li>
 						<?php 
-							if($_SESSION['role'] != 'customer') {
-								?>
-								<li><a href="login.php">Admin</a></li>
-								<li><a href="login2.php">Admin Gudang</a></li>
-								<?php
-							} else { ?>
-								<li><a href="request.php">Request Desain</a></li>
+							if(isset($_SESSION['role'])){
+									?>
+									<li><a href="request.php">Request Desain</a></li>
+									
+									<?php
+								} else { ?>
+									<li><a href="login.php">Admin</a></li>
+									<li><a href="login2.php">Admin Gudang</a></li>
 							<?php }
 						?>
 						
