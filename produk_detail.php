@@ -151,7 +151,7 @@ while($d=mysqli_fetch_array($data)){
 										<span class="text-uppercase">QTY: </span>
 										<input class="input" type="number" required="required">
 									</div> -->
-									<?php if($_SESSION['role'] == 'customer' and $d['produk_jumlah'] > 0) { ?>
+									<?php if(isset($_SESSION['role']) and $d['produk_jumlah'] > 0) { ?>
 									<a class="primary-btn add-to-cart" href="keranjang_masukkan.php?id=<?php echo $d['produk_id']; ?>&redirect=detail"><i class="fa fa-shopping-cart"></i> Masukkan Keranjang</a>
 									<?php } ?>
 									<div class="pull-right">
